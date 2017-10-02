@@ -5,7 +5,7 @@ if [ -z $DNS_RESOLVER ]; then
         | sed -e 's/nameserver\s//g')
 
 fi
-sed -e "s/\(resolver\).*/\1 $DNS_RESOLVER;/" \
+sed -e "s/\(resolver\).*/\1 $DNS_RESOLVER ipv6=off;/" \
     -i /etc/nginx/include/pimcore.conf
 
 if [ ! -z $PIMCORE_FRONTEND_MODULE ]; then
