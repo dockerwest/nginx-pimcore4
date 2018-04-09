@@ -3,6 +3,12 @@ Nginx image for pimcore
 
 Nginx container for pimcore applications. Pimcore is not installed in the Image.
 
+Document Root
+-------------
+
+The required document root for pimcore is set to `<your pimcore project>`. This
+is de standard setup for pimcore 4.
+
 Environment variables
 ---------------------
 
