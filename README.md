@@ -1,5 +1,5 @@
-Nginx image for pimcore
-=======================
+Nginx image for pimcore4
+========================
 
 Nginx container for pimcore applications. Pimcore is not installed in the Image.
 
@@ -38,7 +38,7 @@ additional configuration for a maintenance page. Or you could set
 `client_max_body_size`, ...
 
 ~~~ sh
-$ docker run -v /path/to/overrides.conf:/etc/nginx/include/overrides.conf dockerwest/nginx-pimcore:<version>
+$ docker run -v /path/to/overrides.conf:/etc/nginx/include/overrides.conf dockerwest/nginx-pimcore4:<version>
 ~~~
 
 Versions
