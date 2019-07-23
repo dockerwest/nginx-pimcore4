@@ -42,7 +42,7 @@ build:mainline:
     - master
 
 release:stable:
-  stage: build
+  stage: release
   tags:
     - dockerwest
   script:
@@ -51,7 +51,7 @@ release:stable:
     - master
 
 release:mainline:
-  stage: build
+  stage: release
   tags:
     - dockerwest
   script:
