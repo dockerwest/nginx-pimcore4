@@ -1,6 +1,3 @@
-FROM nginx:mainline-alpine
+FROM dockerwest/nginx:mainline
 
 COPY ./scripts /
-
-ENTRYPOINT ["/entrypoint.sh"]
-CMD ["nginx", "-g", "daemon off;"]

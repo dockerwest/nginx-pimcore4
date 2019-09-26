@@ -10,7 +10,7 @@ prepare:stable:
   tags:
     - dockerwest
   script:
-    - docker pull nginx:stable-alpine
+    - docker pull dockerwest/nginx:stable
   only:
     - master
 
@@ -19,7 +19,7 @@ prepare:stable:
   tags:
     - dockerwest
   script:
-    - docker pull nginx:mainline-alpine
+    - docker pull dockerwest/nginx:mainline
   only:
     - master
 
