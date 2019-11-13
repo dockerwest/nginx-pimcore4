@@ -13,18 +13,35 @@ if [ ! -z $DNS_RESOLVER ]; then
             -i /etc/nginx/include/internals.conf
     fi
     sed -e 's/\(fastcgi_pass\).*/\1 $upstream;/' \
-        -i /etc/nginx/conf.d/default.conf
+        -i /etc/nginx/include/application.conf
 else
     if grep resolver /etc/nginx/include/internals.conf > /dev/null 2>&1; then
         sed -e '/resolver/d' -i /etc/nginx/include/internals.conf
     fi
     sed -e 's/\(fastcgi_pass\).*/\1 application:9000;/' \
-        -i /etc/nginx/conf.d/default.conf
+        -i /etc/nginx/include/application.conf
 fi
 
 if [ ! -z $PIMCORE_FRONTEND_MODULE ]; then
     sed -e "s/\(set \$pimcore_frontend_module\).*/\1 $PIMCORE_FRONTEND_MODULE;/" \
         -i /etc/nginx/include/internals.conf
 fi
+
+nginxconfenable='default-http.conf'
+
+if [ -e /etc/nginx/certs/default.crt ]; then
+    if [ ! -z $HTTPS_ONLY ]; then
+        nginxconfenable='default-http-to-https.conf default-https.conf'
+    else
+        nginxconfenable='default-http.conf default-https.conf'
+    fi
+fi
+
+for conf in $nginxconfenable; do
+    (
+        cd /etc/nginx/conf.d/
+        ln -s "../conf.available/$conf"
+    )
+done
 
 exec "$@"
